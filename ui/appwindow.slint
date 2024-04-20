@@ -10,7 +10,7 @@ export component AppWindow inherits Window {
         spacing: 16px;
         Row {
             Text {
-                text: "Enter total income";
+                text: "Calcule o total dividido:";
                 horizontal-alignment: center;
                 font-size: 24px;
                 font-weight: 700;
@@ -20,7 +20,7 @@ export component AppWindow inherits Window {
         Row {
             income := LineEdit {
                 font-size: 16px;
-                placeholder-text: "Enter text here";
+                placeholder-text: "Digite o valor recebido inteiro";
                 horizontal-alignment: center;
                 padding: 8px;
             }
@@ -28,7 +28,7 @@ export component AppWindow inherits Window {
 
         Row {
             Button {
-                text: "Calculate";
+                text: "Calcular";
                 primary: true;
                 padding: 8px;
                 clicked => {

@@ -1,9 +1,20 @@
 slint::include_modules!();
+use currency_rs::Currency;
+use currency_rs::CurrencyOpts;
 
-const TAX_PER: f64 = 0.30;
-const OWNER_PER: f64 = 0.55;
-const PROFIT_PER: f64 = 0.05;
-const OPEX_PER: f64 = 0.10;
+const CASA: f64 = 0.55;
+const INVESTIMENTO: f64 = 0.30;
+const LAZER: f64 = 0.10;
+const EMERGENCIA: f64 = 0.05;
+
+fn format_currency(value: f64) -> String {
+    let otp = CurrencyOpts::new()
+        .set_separator(".")
+        .set_decimal(",")
+        .set_symbol("R$ ");
+
+    Currency::new_float(value, Some(otp)).format()
+}
 
 fn main() -> Result<(), slint::PlatformError> {
     let ui = AppWindow::new()?;
@@ -14,14 +25,14 @@ fn main() -> Result<(), slint::PlatformError> {
             let ui = ui_handle.unwrap();
             let parsed_string: f64 = string.trim().parse().unwrap();
 
-            let tax: f64 = parsed_string * TAX_PER;
-            let owner: f64 = parsed_string * OWNER_PER;
-            let profit: f64 = parsed_string * PROFIT_PER;
-            let opex: f64 = parsed_string * OPEX_PER;
+            let casa = format_currency(parsed_string * CASA);
+            let investimento = format_currency(parsed_string * INVESTIMENTO);
+            let lazer = format_currency(parsed_string * LAZER);
+            let emergencia = format_currency(parsed_string * EMERGENCIA);
 
             let result = format!(
-                "Taxes: {:.2} \nOwner: {:.2} \nProfit: {:.2} \nOpex: {:.2}",
-                tax, owner, profit, opex
+                "Casa: {} \nInvestimento: {} \nLazer: {} \nEmergencia: {}",
+                casa, investimento, lazer, emergencia
             );
 
             ui.set_results(result.into())
