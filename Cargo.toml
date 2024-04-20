@@ -15,5 +15,5 @@ slint = "1.4"
 slint-build = "1.4"
 
 [package.metadata.bundle]
-name: "Income Divider"
-identifier: "io.github.lucianesantcs.income-divider"
+name = "Income Divider"
+identifier = "io.github.lucianesantcs.income-divider"
