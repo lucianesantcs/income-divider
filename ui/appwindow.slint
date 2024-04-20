@@ -2,6 +2,7 @@ import { Button, VerticalBox, LineEdit } from "std-widgets.slint";
 
 export component AppWindow inherits Window {
     in property <string> results: "";
+    // in-out property <bool> openanimation;
     callback divide-income(string);
     background: #111;
     GridLayout {
@@ -31,6 +32,7 @@ export component AppWindow inherits Window {
                 primary: true;
                 padding: 8px;
                 clicked => {
+                    // root.openanimation = !root.openanimation
                     divide-income(income.text)
                 }
             }
@@ -50,6 +52,32 @@ export component AppWindow inherits Window {
                         text: root.results;
                     }
                 }
+
+                // Rectangle {
+                //     background: #000;
+                //     x: 0;
+                //     width: openanimation ? 0 : parent.width / 2;
+                //     height: parent.height;
+                //     animate width {
+                //         duration: 250ms;
+                //         easing: ease-in;
+                //     }
+                // }
+
+                // Rectangle {
+                //     background: #000;
+                //     x: openanimation ? parent.width : parent.width / 2;
+                //     width: openanimation ? 0 : parent.width / 2;
+                //     height: parent.height;
+                //     animate width {
+                //         duration: 250ms;
+                //         easing: ease-in;
+                //     }
+                //     animate x {
+                //         duration: 250ms;
+                //         easing: ease-in;
+                //     }
+                // }
             }
         }
     }
